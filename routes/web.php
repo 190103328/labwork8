@@ -2,6 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Illuminate\Support\Facades\DB;
+
+use App\Models\Client;
+
+use App\Http\Controllers\ClientController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +21,19 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('client/add', function () {
+    DB::table('clients')->insert([
+        'name' => 'Ayaulym',
+        'phone' => 30 ,
+        'email' => '190103328@stu.sdu.edu.kz',
+        'text' => 'birthday party',
+    ]);
+});
+
+//Route::get('client', function(){
+//    $client = Client::find(1);
+//    return $client;
+//});
+
+Route::get('client', [ClientController::class,'index']);
